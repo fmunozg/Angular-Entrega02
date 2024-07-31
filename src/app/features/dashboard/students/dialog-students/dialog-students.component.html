@@ -1,0 +1,31 @@
+<div style="margin: 20px;" appHeader>{{dialogTitle}}</div>
+
+<div>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="row" style="text-align: center;">
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="nombre" placeholder="Nombre" aria-label="Nombre">
+              </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Apellido</mat-label>
+                <input matInput formControlName="apellido" placeholder="Apellido" aria-label="Apellido">
+              </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-label>País</mat-label>
+                <input matInput formControlName="pais" placeholder="Pais" aria-label="Pais">
+              </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="button-actions">
+      <button mat-flat-button type="button" color="primary" (click)="onCancel()">Cancelar</button>
+      <button mat-flat-button type="submit" [disabled]="studentForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

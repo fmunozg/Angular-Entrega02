@@ -1,0 +1,36 @@
+<div style="margin: 20px;" appHeader>{{dialogTitle}}</div>
+
+<div>
+  <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+    <div class="row" style="text-align: center;">
+        <div class="col">
+            <mat-form-field>
+                <mat-label>Nombre Curso</mat-label>
+                <input matInput formControlName="nombreCurso" placeholder="Nombre Curso" aria-label="Curso">
+              </mat-form-field>
+        </div>
+        <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate formControlName="startDate" placeholder="Fecha Inicio">
+              <input matEndDate formControlName="endDate" placeholder="Fecha Término">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          
+            @if (range.controls.start.hasError('matStartDateInvalid')) {
+              <mat-error>Invalid start date</mat-error>
+            }
+            @if (range.controls.end.hasError('matEndDateInvalid')) {
+              <mat-error>Invalid end date</mat-error>
+            }
+          </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="button-actions">
+      <button mat-flat-button type="button" color="primary" (click)="onCancel()">Cancelar</button>
+      <button mat-flat-button type="submit" [disabled]="courseForm.invalid">Guardar</button>
+    </div>
+  </form>
+</div>

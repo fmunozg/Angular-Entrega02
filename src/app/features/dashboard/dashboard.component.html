@@ -1,0 +1,38 @@
+<mat-drawer-container class="example-container" autosize>
+  <!-- SIDEBAR INICIO -->
+  <mat-drawer [opened]="true" #drawer class="example-sidenav" mode="side">
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="home" >Inicio</a>
+      <a mat-list-item routerLink="courses">Cursos</a>
+      <a mat-list-item routerLink="students">Alumnos</a>
+      <a mat-list-item routerLink="enrollments">Inscripciones</a>
+      <a mat-list-item routerLink="/auth">Cerrar sesion</a>
+    </mat-nav-list>
+  </mat-drawer>
+  <!-- SIDEBAR FIN -->
+
+  <!-- MAIN CONTENT INICIO-->
+  <div class="example-sidenav-content">
+
+    <!-- TOOLBAR INICIO -->
+    <mat-toolbar color="primary">
+      <button
+        (click)="drawer.toggle()"
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Entrega 02 - Angular</span>
+      <span class="example-spacer"></span>
+    </mat-toolbar>
+    <!-- TOOLBAR FIN -->
+
+    <main class="p-5">
+      <router-outlet />
+    </main>
+  </div>
+  <!-- MAIN CONTENT FIN-->
+</mat-drawer-container>
