@@ -4,22 +4,20 @@
   <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()">
     <div class="row" style="text-align: center;">
         <div class="col">
-            <mat-form-field>
-                <mat-label>Nombre</mat-label>
-                <input matInput formControlName="nombre" placeholder="Nombre" aria-label="Nombre">
-              </mat-form-field>
+          <mat-form-field>
+            <mat-label>Seleccione Alumno</mat-label>
+            <mat-select [(value)]="selectedStudent" formControlName="student">
+              <mat-option *ngFor="let student of students" [value]="student.nombre+' '+student.apellido">{{student.nombre}} {{student.apellido}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col">
-            <mat-form-field>
-                <mat-label>Apellido</mat-label>
-                <input matInput formControlName="apellido" placeholder="Apellido" aria-label="Apellido">
-              </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field>
-                <mat-label>País</mat-label>
-                <input matInput formControlName="pais" placeholder="Pais" aria-label="Pais">
-              </mat-form-field>
+          <mat-form-field>
+            <mat-label>Seleccione Curso</mat-label>
+            <mat-select [(value)]="selectedCourse" formControlName="course">
+              <mat-option *ngFor="let course of courses" [value]="course.nombreCurso">{{course.nombreCurso}}</mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
     </div>
 

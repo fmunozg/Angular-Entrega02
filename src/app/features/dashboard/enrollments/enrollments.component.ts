@@ -21,13 +21,14 @@ export class EnrollmentsComponent {
 
     students: any;
     courses: any;
+    enrollData: any;
 
   ngOnInit(): void {
-    this.getStudents();
-    this.getCourses();
+    this.enrollData = this.enrollService.getEnrollments();
+    console.log(this.enrollData)
   }
 
-  displayedColumns: string[] = ['id', 'name', 'country','actions'];
+  displayedColumns: string[] = ['id', 'student', 'course','actions'];
 
 
   openDialog(): void {
@@ -37,30 +38,18 @@ export class EnrollmentsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        result['id'] = this.students.length + 1;
-        this.students = [...this.students, result]
+        result['id'] = this.enrollData.length + 1;
+        this.enrollData = [...this.enrollData, result]
       }
     });
   }
 
-  deleteStudent(event:any){
-    this.studentService.deleteStudentByID(event);
-    this.getStudents();
+  deleteEnroll(event:any){
+    this.enrollService.deleteEnrollmentByID(event);
+    //this.getStudents();
   }
 
-  getStudents(){
-    this.studentService.getStudents().subscribe((res)=>{
-      this.students = res;
-    })
-  }
-
-  getCourses(){
-    this.courseService.getCourses().subscribe((res: any)=>{
-      this.courses = res;
-    })
-  }
-
-  editStudent(enrollData:enroll){
+  editEnroll(enrollData:enroll){
     this.dialog.open(DialogEnrollmentsComponent,{data: enrollData}).afterClosed().subscribe({
       next:(value) => {
         if(!!value){

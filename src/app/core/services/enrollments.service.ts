@@ -24,7 +24,7 @@ export class EnrollmentsService {
   
   
 
-  getStudents(): Observable<enroll[]> {
+  getEnrollments(): Observable<enroll[]> {
     return new Observable((observer) => {
       setTimeout(() => {
         observer.next(this.dataEnroll);
@@ -33,7 +33,7 @@ export class EnrollmentsService {
     });
   }
 
-  deleteStudentByID(id:number){
+  deleteEnrollmentByID(id:number){
     if(confirm('Está Seguro?')){
       this.dataEnroll = this.dataEnroll.filter((el)=> el.id != id)
     }
